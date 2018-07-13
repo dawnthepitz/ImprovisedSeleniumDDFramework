@@ -25,6 +25,8 @@ namespace SeleniumFramework.Scripts
             testScript.TestSteps.Add(new TestStep("Select One way", "One way is selected"));
             testScript.TestSteps.Add(new TestStep("Select number of passengers", "User has selected number of passengers"));
             testScript.TestSteps.Add(new TestStep("Select From", "User has selected From"));
+            testScript.TestSteps.Add(new TestStep("Determine if logo exists", "logo exists"));
+            testScript.TestSteps.Add(new TestStep("Check if the description is 'Wrong Description'", "Description is Wrong"));
             try
             {
                 var homePage = new MercuryHomePage(driver);
@@ -64,11 +66,19 @@ namespace SeleniumFramework.Scripts
                 flightFinderPage.selectFrom("London");
                 TakeScreenshotOfStep(8);
                 testScript.CheckTestStepNo(8);
+
+                DetermineIfExists("/html/body/div/table/tbody/tr/td[1]/table/tbody/tr/td/table/tbody/tr/td/p[1]/img", "xpath");
+                TakeScreenshotOfStep(9);
+                testScript.CheckTestStepNo(9);
+
+                AssertEquals("/html/body/div/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[3]/td/font", "xpath", "Wrong description");
+                TakeScreenshotOfStep(9);
+                testScript.CheckTestStepNo(9);
             }
-            finally
+            catch
             {
-                testScript.MakeHTMLReport();
             }
+            testScript.MakeHTMLReport();
         }
 
     }

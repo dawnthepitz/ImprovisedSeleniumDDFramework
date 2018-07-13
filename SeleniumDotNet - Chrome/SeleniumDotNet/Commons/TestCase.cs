@@ -29,5 +29,99 @@ namespace SeleniumFramework.Commons
         {
             MessageBox.Show("I will be pausing my Execution for Semi-automation purposes");
         }
+        protected void DetermineIfExists(string path, string pathType)
+        {
+            if (pathType == "id")
+            {
+                IWebElement element = driver.FindElement(By.Id(path));
+            }
+            else if (pathType == "name")
+            {
+                IWebElement element = driver.FindElement(By.Name(path));
+            }
+            else if (pathType == "class")
+            {
+                IWebElement element = driver.FindElement(By.ClassName(path));
+            }
+            else if (pathType == "xpath")
+            {
+                IWebElement element = driver.FindElement(By.XPath(path));
+            }
+            else throw new Exception();
+        }
+        protected void AssertEquals(string path, string pathType,string value)
+        {
+            IWebElement element;
+            if (pathType == "id")
+            {
+                element = driver.FindElement(By.Id(path));
+                if (element.Text != value)
+                {
+                    throw new Exception();
+                }
+            }
+            else if (pathType == "name")
+            {
+                element = driver.FindElement(By.Name(path));
+                if (element.Text != value)
+                {
+                    throw new Exception();
+                }
+            }
+            else if (pathType == "class")
+            {
+                element = driver.FindElement(By.ClassName(path));
+                if (element.Text != value)
+                {
+                    throw new Exception();
+                }
+            }
+            else if (pathType == "xpath")
+            {
+                element = driver.FindElement(By.XPath(path));
+                if (element.Text != value)
+                {
+                    throw new Exception();
+                }
+            }
+            else throw new Exception();
+        }
+        protected void AssertNotEquals(string path, string pathType, string value)
+        {
+            IWebElement element;
+            if (pathType == "id")
+            {
+                element = driver.FindElement(By.Id(path));
+                if (element.Text == value)
+                {
+                    throw new Exception();
+                }
+            }
+            else if (pathType == "name")
+            {
+                element = driver.FindElement(By.Name(path));
+                if (element.Text == value)
+                {
+                    throw new Exception();
+                }
+            }
+            else if (pathType == "class")
+            {
+                element = driver.FindElement(By.ClassName(path));
+                if (element.Text == value)
+                {
+                    throw new Exception();
+                }
+            }
+            else if (pathType == "xpath")
+            {
+                element = driver.FindElement(By.XPath(path));
+                if (element.Text == value)
+                {
+                    throw new Exception();
+                }
+            }
+            else throw new Exception();
+        }
     }
 }
