@@ -53,6 +53,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commons\TestCase.cs" />
+    <Compile Include="Commons\TestScript.cs" />
+    <Compile Include="Commons\TestStep.cs" />
     <Compile Include="Commons\WebPage.cs" />
     <Compile Include="Pages\MercuryFlightFinderPage.cs" />
     <Compile Include="Pages\MercuryHomePage.cs" />
