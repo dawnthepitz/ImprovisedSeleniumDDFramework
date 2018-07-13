@@ -46,13 +46,13 @@ namespace SeleniumFramework.Commons
 
         public void MakeHTMLReport(string fileName)
         {
-            string htmlRender="<h1><b>"+testCaseName+"</b></h1>";
+            string htmlRender = "<h1><b>" + testCaseName + "</b></h1>";
             htmlRender += "Date Tested:" + DateTime.Now;
             htmlRender += "<table border=1>";
-            htmlRender += "<b><tr><th>Action</th><th>Expected Result</th><th>Passed?</th></tr></B>";
-            foreach (TestStep testStep in testSteps)
+            htmlRender += "<b><tr><th>Step No</th><th>Action</th><th>Expected Result</th><th>Passed?</th></tr></b>";
+            for (int i = 0; i < TestSteps.Count; i++)
             {
-                htmlRender += "<b><tr><th>"+testStep.StepAction+"</th><th>"+testStep.ExpectedResult+"</th><th>"+testStep.Passed+"</th></tr></b>";
+                htmlRender += "<tr><td>" + (i+1) + "</td><td>" + testSteps[i].StepAction + "</td><td>" + testSteps[i].ExpectedResult + "</td><td>" + testSteps[i].Passed + "</td></tr>";
             }
             htmlRender += "</table>";
             File.Delete(fileName);
@@ -63,10 +63,10 @@ namespace SeleniumFramework.Commons
             string htmlRender = "<h1><b>" + testCaseName + "</b></h1>";
             htmlRender += "Date Tested:" + DateTime.Now;
             htmlRender += "<table border=1>";
-            htmlRender += "<b><tr><th>Action</th><th>Expected Result</th><th>Passed?</th></tr></b>";
-            foreach (TestStep testStep in testSteps)
+            htmlRender += "<b><tr><th>Step No</th><th>Action</th><th>Expected Result</th><th>Passed?</th></tr></b>";
+            for (int i=0; i<TestSteps.Count;i++)
             {
-                htmlRender += "<b><tr><th>" + testStep.StepAction + "</th><th>" + testStep.ExpectedResult + "</th><th>" + testStep.Passed + "</th></tr></b>";
+                htmlRender += "<tr><td>" + (i+1) + "</td><td>" + testSteps[i].StepAction + "</td><td>" + testSteps[i].ExpectedResult + "</td><td>" + testSteps[i].Passed + "</td></tr>";
             }
             htmlRender += "</table>";
             File.Delete(testCaseName + ".html");

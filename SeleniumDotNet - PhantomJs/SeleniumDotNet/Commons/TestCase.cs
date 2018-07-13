@@ -26,6 +26,7 @@ namespace SeleniumFramework.Commons
         }
         protected void DetermineIfExists(string path, string pathType)
         {
+            TestCase.Log("Looking for Element:" + path + " with PathType:" + pathType);
             if (pathType == "id")
             {
                 IWebElement element = driver.FindElement(By.Id(path));
@@ -49,6 +50,7 @@ namespace SeleniumFramework.Commons
             IWebElement element;
             if (pathType == "id")
             {
+                TestCase.Log("Asserting if " + value + " is same as value of id=" + path);
                 element = driver.FindElement(By.Id(path));
                 if (element.Text != value)
                 {
@@ -57,6 +59,7 @@ namespace SeleniumFramework.Commons
             }
             else if (pathType == "name")
             {
+                TestCase.Log("Asserting if " + value + " is same as value of name=" + path);
                 element = driver.FindElement(By.Name(path));
                 if (element.Text != value)
                 {
@@ -65,6 +68,7 @@ namespace SeleniumFramework.Commons
             }
             else if (pathType == "class")
             {
+                TestCase.Log("Asserting if " + value + " is same as value of class=" + path);
                 element = driver.FindElement(By.ClassName(path));
                 if (element.Text != value)
                 {
@@ -73,19 +77,25 @@ namespace SeleniumFramework.Commons
             }
             else if (pathType == "xpath")
             {
+                TestCase.Log("Asserting if " + value + " is same as value of xpath=" + path);
                 element = driver.FindElement(By.XPath(path));
                 if (element.Text != value)
                 {
                     throw new Exception();
                 }
             }
-            else throw new Exception();
+            else
+            {
+                TestCase.Log("Nothing to assort with");
+                throw new Exception();
+            }
         }
         protected void AssertNotEquals(string path, string pathType, string value)
         {
             IWebElement element;
             if (pathType == "id")
             {
+                TestCase.Log("Asserting if " + value + " has different value against id=" + path);
                 element = driver.FindElement(By.Id(path));
                 if (element.Text == value)
                 {
@@ -94,6 +104,7 @@ namespace SeleniumFramework.Commons
             }
             else if (pathType == "name")
             {
+                TestCase.Log("Asserting if " + value + " has different value against name=" + path);
                 element = driver.FindElement(By.Name(path));
                 if (element.Text == value)
                 {
@@ -102,6 +113,7 @@ namespace SeleniumFramework.Commons
             }
             else if (pathType == "class")
             {
+                TestCase.Log("Asserting if " + value + " has different value against class=" + path);
                 element = driver.FindElement(By.ClassName(path));
                 if (element.Text == value)
                 {
@@ -110,13 +122,18 @@ namespace SeleniumFramework.Commons
             }
             else if (pathType == "xpath")
             {
+                TestCase.Log("Asserting if " + value + " has different value against xpath" + path);
                 element = driver.FindElement(By.XPath(path));
                 if (element.Text == value)
                 {
                     throw new Exception();
                 }
             }
-            else throw new Exception();
+            else
+            {
+                TestCase.Log("Nothing to assort against");
+                throw new Exception();
+            }
         }
     }
 }

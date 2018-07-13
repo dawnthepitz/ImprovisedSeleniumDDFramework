@@ -26,7 +26,7 @@ namespace SeleniumFramework.Scripts
             testScript.TestSteps.Add(new TestStep("Select number of passengers", "User has selected number of passengers"));
             testScript.TestSteps.Add(new TestStep("Select From", "User has selected From"));
             testScript.TestSteps.Add(new TestStep("Determine if logo exists", "logo exists"));
-            testScript.TestSteps.Add(new TestStep("Check if the description is 'Wrong Description'", "Description is Wrong"));
+            testScript.TestSteps.Add(new TestStep("Check if the description is 'Wrong Description'", "Description says 'Wrong Description'"));
             try
             {
                 var homePage = new MercuryHomePage(driver);
