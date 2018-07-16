@@ -75,8 +75,10 @@ namespace SeleniumFramework.Scripts
                 TakeScreenshotOfStep(9);
                 testScript.CheckTestStepNo(9);
             }
-            catch
+            catch(Exception e)
             {
+                TestCase.Log(e.Message);
+                TestCase.Log(e.StackTrace);
             }
             testScript.MakeHTMLReport();
         }

@@ -27,28 +27,33 @@ namespace SeleniumFramework.Commons
         }
         public static void LetHumanIntervene()
         {
+            TestCase.Log("Enabling human intervention");
             MessageBox.Show("I will be pausing my Execution for Semi-automation purposes");
         }
         protected void DetermineIfExists(string path, string pathType)
         {
-            TestCase.Log("Looking for Element:" + path+" with PathType:"+pathType);
+            TestCase.Log("Looking for " + pathType+"="+path);
             if (pathType == "id")
             {
                 IWebElement element = driver.FindElement(By.Id(path));
+                TestCase.Log(pathType + "=" + path+" is found");
             }
             else if (pathType == "name")
             {
                 IWebElement element = driver.FindElement(By.Name(path));
+                TestCase.Log(pathType + "=" + path + " is found");
             }
             else if (pathType == "class")
             {
                 IWebElement element = driver.FindElement(By.ClassName(path));
+                TestCase.Log(pathType + "=" + path + " is found");
             }
             else if (pathType == "xpath")
             {
                 IWebElement element = driver.FindElement(By.XPath(path));
+                TestCase.Log(pathType + "=" + path + " is found");
             }
-            else throw new Exception();
+            else throw new Exception(pathType+"="+path+" does not exist");
         }
         protected void AssertEquals(string path, string pathType, string value)
         {
@@ -59,7 +64,7 @@ namespace SeleniumFramework.Commons
                 element = driver.FindElement(By.Id(path));
                 if (element.Text != value)
                 {
-                    throw new Exception();
+                    throw new Exception("id=" + path + " has value!=" + value);
                 }
             }
             else if (pathType == "name")
@@ -68,7 +73,7 @@ namespace SeleniumFramework.Commons
                 element = driver.FindElement(By.Name(path));
                 if (element.Text != value)
                 {
-                    throw new Exception();
+                    throw new Exception("name=" + path + " has value!=" + value);
                 }
             }
             else if (pathType == "class")
@@ -77,7 +82,7 @@ namespace SeleniumFramework.Commons
                 element = driver.FindElement(By.ClassName(path));
                 if (element.Text != value)
                 {
-                    throw new Exception();
+                    throw new Exception("class=" + path + " has value!=" + value);
                 }
             }
             else if (pathType == "xpath")
@@ -86,13 +91,12 @@ namespace SeleniumFramework.Commons
                 element = driver.FindElement(By.XPath(path));
                 if (element.Text != value)
                 {
-                    throw new Exception();
+                    throw new Exception("xpath=" + path + " has value!=" + value);
                 }
             }
             else
             {
-                TestCase.Log("Nothing to assort with");
-                throw new Exception();
+                throw new Exception("Nothing to assort with");
             }
         }
         protected void AssertNotEquals(string path, string pathType, string value)
@@ -104,7 +108,7 @@ namespace SeleniumFramework.Commons
                 element = driver.FindElement(By.Id(path));
                 if (element.Text == value)
                 {
-                    throw new Exception();
+                    throw new Exception("id=" + path + " has same value=" + value);
                 }
             }
             else if (pathType == "name")
@@ -113,7 +117,7 @@ namespace SeleniumFramework.Commons
                 element = driver.FindElement(By.Name(path));
                 if (element.Text == value)
                 {
-                    throw new Exception();
+                    throw new Exception("name=" + path + " has same value=" + value);
                 }
             }
             else if (pathType == "class")
@@ -122,7 +126,7 @@ namespace SeleniumFramework.Commons
                 element = driver.FindElement(By.ClassName(path));
                 if (element.Text == value)
                 {
-                    throw new Exception();
+                    throw new Exception("class=" + path + " has same value=" + value);
                 }
             }
             else if (pathType == "xpath")
@@ -131,13 +135,12 @@ namespace SeleniumFramework.Commons
                 element = driver.FindElement(By.XPath(path));
                 if (element.Text == value)
                 {
-                    throw new Exception();
+                    throw new Exception("xpath="+path+" has same value="+value);
                 }
             }
             else
             {
-                TestCase.Log("Nothing to assort against");
-                throw new Exception();
+                throw new Exception("Nothing to assort against");
             }
         }
     }
