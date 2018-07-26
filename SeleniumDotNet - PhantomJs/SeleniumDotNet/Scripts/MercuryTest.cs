@@ -17,6 +17,11 @@ namespace SeleniumFramework.Scripts
         }
         public void test()
         {
+            testScript.Description = "Testing Selenium framework by Visiting Mercury Tours website";
+            
+            testScript.Assumptions.Add("User is connected to the internet");
+            testScript.Assumptions.Add("Some parts of this automated test script may fail due to components not loading properly");
+            
             testScript.TestSteps.Add(new TestStep("Visit newtours.demoaut.com", "newtours.demoaut.com should show on page"));
             testScript.TestSteps.Add(new TestStep("Click the sign on page", "Sign-On page must be shown"));
             testScript.TestSteps.Add(new TestStep("Enter username", "Username must be displayed on textbox"));

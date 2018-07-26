@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows.Forms;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium;
+using System.Threading;
 
 namespace SeleniumFramework.Commons
 {
@@ -21,9 +22,14 @@ namespace SeleniumFramework.Commons
         {
             Console.WriteLine(log);
         }
+        public static void WaitInSeconds(int seconds)
+        {
+            Log("Waiting for about " + seconds + " seconds to ensure components are loaded properly");
+            Thread.Sleep(TimeSpan.FromSeconds(seconds));
+        }
         public void TakeScreenshotOfStep(int stepNo)
         {
-            driver.GetScreenshot().SaveAsFile(this.GetType().Name+ "-Step#" + stepNo + ".png", ScreenshotImageFormat.Png);
+            driver.GetScreenshot().SaveAsFile(this.GetType().Name+ "-Step" + stepNo + ".png", ScreenshotImageFormat.Png);
         }
         public static void LetHumanIntervene()
         {
